@@ -16,9 +16,11 @@ class Calculator:
         return self
 
     def undo(self) -> Calculator:
-        lastCommand = self.history.pop()
-        if lastCommand:
-            self.value = lastCommand.undo(self.value)
+        if len(self.history) > 0:
+            last_command = self.history.pop()
+            self.value = last_command.undo(self.value)
+        else:
+            print("Nothing to undo.")
         return self
 
     def print_history(self):
